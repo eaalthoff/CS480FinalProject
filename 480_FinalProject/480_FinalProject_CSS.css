@@ -2,7 +2,23 @@ body {
     background-color: rgb(224, 221, 221) ;
 }
 
+/*SEARCH BAR CSS*/
+.searchBar {
+  width: 100%;
+  padding-left: 256px;
+  padding-top: 35px;
+}
+
+
 /*SIDE NAVIGATION CSS*/
+.photographerHeadShot {
+  width: 75%;
+  height: auto;
+  padding-left: 15px;
+  padding-top: 35px ;
+  
+}
+
 .sidenav {
     height: 100%;
     width: 160px;
@@ -30,14 +46,21 @@ body {
     text-decoration: underline;
   }
 
+  /*MAIN CONTENT DIV CSS*/
+  .mainContent {
+    padding-left: 256px;
+
+  }
+
   /*Gallery CSS*/
-  img {
+  .gallImage {
       width: 250px;
       height: 200px;
   }
-  img:hover {
+  .gallImage:hover {
       width: 500px;
       height: 450px;
+      transition: 0.75s;
   }
   .row {
     display: flex;
@@ -46,8 +69,8 @@ body {
   }
   
   .column {
-      margin-left: 250px;
-    flex: 33.3%;
+    margin-left: 250px;
+    flex:33.3%;
     padding: 0 4px;
   }
   
