@@ -1,80 +1,190 @@
 body {
-    background-color: rgb(224, 221, 221) ;
+  background-color: rgb(224, 221, 221) ;
 }
 
 /*SEARCH BAR CSS*/
 .searchBar {
-  width: 100%;
-  padding-left: 256px;
-  padding-top: 35px;
+width: 100%;
+padding-left: 256px;
+padding-top: 35px;
 }
 
 
 /*SIDE NAVIGATION CSS*/
 .photographerHeadShot {
-  width: 75%;
-  height: auto;
-  padding-left: 15px;
-  padding-top: 35px ;
-  
+width: 75%;
+height: auto;
+padding-left: 15px;
+padding-top: 35px ;
+
 }
 
 .sidenav {
-    height: 100%;
-    width: 160px;
-    background-color: white;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 50px;
-    overflow-x: hidden;
-    padding-top: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-  }
-  
-  .sidenav a:hover {
-    color: #302f2f;
-    text-decoration: underline;
+  height: 100%;
+  width: 160px;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 50px;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #302f2f;
+  text-decoration: underline;
+}
+
+/*MAIN CONTENT DIV CSS*/
+.mainContent {
+  padding-left: 256px;
+
+}
+
+/*Gallery CSS*/
+.gallImage {
+    width: 250px;
+    height: 200px;
+}
+.gallImage:hover {
+    width: 500px;
+    height: 450px;
+    transition: 0.75s;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.column {
+  margin-left: 250px;
+  flex:33.3%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+/*Artist About Us Descriptions*/
+.artistDesciptions {
+  text-align: left;
+  width: 75%;
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+.artistDescriptionIndividual {
+  padding: 20px;
+  margin-bottom: 20px;
+} 
+
+.photographerHeadShot img {
+  width: 30%;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 15px;
+}
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+  background-color: #777;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
   }
 
-  /*MAIN CONTENT DIV CSS*/
-  .mainContent {
-    padding-left: 256px;
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
 
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
   }
-
-  /*Gallery CSS*/
-  .gallImage {
-      width: 250px;
-      height: 200px;
-  }
-  .gallImage:hover {
-      width: 500px;
-      height: 450px;
-      transition: 0.75s;
-  }
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-  }
-  
-  .column {
-    margin-left: 250px;
-    flex:33.3%;
-    padding: 0 4px;
-  }
-  
-  .column img {
-    margin-top: 8px;
-    vertical-align: middle;
-  }
+}
