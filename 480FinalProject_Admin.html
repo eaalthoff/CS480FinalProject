@@ -14,6 +14,12 @@
         .table {
             width: 50%;
         }
+
+        .form {
+            width: 50%;
+        }
+        
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -86,10 +92,38 @@
     </tr>
   </tbody>
 </table>
+        
 
 
 
-        </center>
+    <!--Allow users to edit, insert, remove, etc from the database based on permission... (in progress)-->
+    <br>
+    <h3>Complete your editing of the database below: </h3>
+    <form class="form">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp" placeholder="Enter title of artwork">
+          <small id="titleHelp" class="form-text text-muted">Add the title of the artwork</small>
+        </div>
+        <div class="form-group">
+          <label>Medium</label>
+          <input type="text" class="form-control" id="mediumInput" placeholder="Medium of artwork">
+          <small id="mediumHelp" class="form-text text-muted">Specify the medium of the piece. Ex: painting, photograph, sculputre, etc</small>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control" id="priceInput" placeholder="Price of artwork">
+            <small id="priceHelp" class="form-text text-muted">Specify the appropriate price of the piece</small>
+          </div>
+          <div class="form-group">
+            <label>Year</label>
+            <input type="text" class="form-control" id="yearInput" placeholder="Year the artwork was created">
+            <small id="yearHelp" class="form-text text-muted">Specify the Year of the piece </small>
+          </div>
+        <button type="submit" class="btn btn-outline-success btn-block" style="width: 25%;">Submit</button>
+      </form>   
+
+        
       
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
