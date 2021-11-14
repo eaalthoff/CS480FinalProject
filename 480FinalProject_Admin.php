@@ -18,6 +18,10 @@
         .form {
             width: 50%;
         }
+
+        .error {
+            color: red;
+        }
         
 
     </style>
@@ -35,6 +39,37 @@
                 $('#imagemodal').modal('show');   
             });
         });
+
+
+        //regex year
+        function checkYear() {
+        var RegExp = /^[12][0-9]{2}$/; //I have no idea why /^[12][0-9]{3}$/ wasn't working, but {2} is a temp workaround
+        var yearInput = document.getElementById("yearInput").value;
+        var errorSpan = document.getElementById("yearError");
+        if(!RegExp.test(yearInput)) {
+            errorSpan.innerHTML = "<br>Error: Please use a four digit year from 1000 to 2999"
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+    }
+
+
+        //regex URL
+        function checkURL() {
+        var RegExp = /images\//;
+        var urlInput = document.getElementById("urlInput").value;
+        var errorSpan = document.getElementById("urlError");
+        if(!RegExp.test(urlInput)) {
+            errorSpan.innerHTML = "<br>Error: Please enter a url in the form images/yourImageName.jpg"
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+    }
+
+
+
     </script>
     <title>Gallery w/ Bootstrap</title>
 </head>
@@ -92,37 +127,60 @@
     </tr>
   </tbody>
 </table>
-        
-
-
-
-    <!--Allow users to edit, insert, remove, etc from the database based on permission... (in progress)-->
+    
     <br>
-    <h3>Complete your editing of the database below: </h3>
-    <form class="form">
+    <!--This form is a work in progress. Right now the data is not being input into the database table accruately.-->
+    <form action="480FinalProject_AdminACK.php" method="post" class="form">
+        <!--TITLE INPUT-->
         <div class="form-group">
           <label>Title</label>
-          <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp" placeholder="Enter title of artwork">
+          <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter title of artwork">
           <small id="titleHelp" class="form-text text-muted">Add the title of the artwork</small>
         </div>
+        <!--TITLE ID INPUT-->
+        <div class="form-group">
+          <label>Title ID</label>
+          <input type="number" name="titleID" class="form-control" id="titleIdInput" placeholder="Enter title ID of artwork">
+          <small id="titleIdHelp" class="form-text text-muted">Add the title ID of the artwork</small>
+        </div>
+        <!--ARTIST ID INPUT-->
+        <div class="form-group">
+          <label>Artist ID</label>
+          <input type="number" name="artistID" class="form-control" id="artistIdInput" placeholder="Enter artist ID of artist">
+          <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small>
+        </div>
+        <!--MEDIUM INPUT-->
         <div class="form-group">
           <label>Medium</label>
-          <input type="text" class="form-control" id="mediumInput" placeholder="Medium of artwork">
+          <input type="text" name="medium" class="form-control" id="mediumInput" placeholder="Medium of artwork">
           <small id="mediumHelp" class="form-text text-muted">Specify the medium of the piece. Ex: painting, photograph, sculputre, etc</small>
         </div>
+        <!--PRICE INPUT-->
         <div class="form-group">
             <label>Price</label>
-            <input type="text" class="form-control" id="priceInput" placeholder="Price of artwork">
+            <input type="number" name="price" class="form-control" id="priceInput" placeholder="Price of artwork">
             <small id="priceHelp" class="form-text text-muted">Specify the appropriate price of the piece</small>
           </div>
+          <!--YEAR INPUT-->
           <div class="form-group">
             <label>Year</label>
-            <input type="text" class="form-control" id="yearInput" placeholder="Year the artwork was created">
+            <input type="number" name="year" class="form-control" id="yearInput" placeholder="Year the artwork was created" onkeydown= "checkYear()">
+            <span class='error' id='yearError'></span>
+            <p></p>
             <small id="yearHelp" class="form-text text-muted">Specify the Year of the piece </small>
           </div>
+      <div class="form-group">
+          <label>URL</label>
+          <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeydown="checkURL()">
+          <span class='error' id='urlError'></span>
+            <p></p>
+          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format images/yourImage.jpg </small>
+        </div>
         <button type="submit" class="btn btn-outline-success btn-block" style="width: 25%;">Submit</button>
-      </form>   
+        </form> 
 
+      <br>
+      <br>
         
       
     </main>
@@ -136,27 +194,6 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-<!--PHP SECTION FOR EDITING DB-->
-<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected successfully<br>";
-
-
-
-
-    $conn->close();
-?>
 
 </body>
 
