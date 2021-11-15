@@ -59,11 +59,11 @@
                     <a class="nav-link" href="480FinalProject_About.html">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_ContactUs.html">Contact Us</a>
+                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-                </li>
+                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+              </li>
             </ul>
         </div>
     </nav>
@@ -72,7 +72,7 @@
         <center>
         <h2>Administrative Access Portal</h2>
       
-      <h3> Your request has been recieved. Contact the administrator for verification and questions. </h3>   
+      <h3> Your request has been received. Contact the administrator for verification and questions. </h3>   
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -104,26 +104,26 @@
 
     //take the values in the form on Admin page
     $title = $_REQUEST['title'];
-    $titleID = $_REQUEST['titleID'];
+    $titleID = rand(1,10000000); //$_REQUEST['titleID'] later...
     $artistID = $_REQUEST['artistID'];
+    $url = $_REQUEST['url'];
     $medium = $_REQUEST['medium'];
     $price = $_REQUEST['price'];
     $year = $_REQUEST['year'];
-    $url = $_REQUEST['url'];
 
     //insert data into table
-    $sql = "INSERT INTO artwork VALUES ('$title',
-                                        '$titleID',
+    $sql = "INSERT INTO artwork VALUES ('$titleID',
+                                        '$title',
                                         '$artistID', 
+                                        '$url',
                                         '$medium',
                                         '$price',
-                                        '$year',
-                                        '$url')";
+                                        '$year')";
 
 if(mysqli_query($conn, $sql)){
     echo "<br><center><h4>Data stored in a artwork table successfully.</h4></center>";
     echo "<br><center><h4>Data stored in Artwork: </h4></center>";
-    echo nl2br("<center><h4> \n$title\n $titleID\n $artistID\n $medium\n $price \n$year \n$url </h4></center>");
+   // echo nl2br("<center><h4> \n$title\n $titleID\n $artistID\n $medium\n $price \n$year \n$url </h4></center>");
 } else{
     echo "ERROR: Sorry $sql. " 
         . mysqli_error($conn);
