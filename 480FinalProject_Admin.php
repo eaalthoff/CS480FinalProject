@@ -44,7 +44,7 @@
         //regex year
         function checkYear() {
         var RegExp = /^[12][0-9]{2}$/; //I have no idea why /^[12][0-9]{3}$/ wasn't working, but {2} is a temp workaround
-        var yearInput = document.getElementById("yearInput").value;
+        var yearInput = document.getElementById("year").value;
         var errorSpan = document.getElementById("yearError");
         if(!RegExp.test(yearInput)) {
             errorSpan.innerHTML = "<br>Error: Please use a four digit year from 1000 to 2999"
@@ -92,11 +92,11 @@
                     <a class="nav-link" href="480FinalProject_About.html">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_ContactUs.html">Contact Us</a>
+                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-                </li>
+                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+              </li>
             </ul>
         </div>
     </nav>
@@ -134,37 +134,41 @@
         <!--TITLE INPUT-->
         <div class="form-group">
           <label>Title</label>
-          <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter title of artwork">
+          <input type="text" name="title" class="form-control" id="title" placeholder="Enter title of artwork">
           <small id="titleHelp" class="form-text text-muted">Add the title of the artwork</small>
         </div>
-        <!--TITLE ID INPUT-->
+
+
+        <!--TITLE ID INPUT -- RANDOM GENERATE FOR NOW...
         <div class="form-group">
           <label>Title ID</label>
-          <input type="number" name="titleID" class="form-control" id="titleIdInput" placeholder="Enter title ID of artwork">
+          <input type="number" name="titleID" class="form-control" id="titleID" placeholder="Enter title ID of artwork">
           <small id="titleIdHelp" class="form-text text-muted">Add the title ID of the artwork</small>
-        </div>
+        </div> -->
+
+
         <!--ARTIST ID INPUT-->
         <div class="form-group">
           <label>Artist ID</label>
-          <input type="number" name="artistID" class="form-control" id="artistIdInput" placeholder="Enter artist ID of artist">
+          <input type="number" name="artistID" class="form-control" id="artistID" placeholder="Enter artist ID of artist">
           <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small>
         </div>
         <!--MEDIUM INPUT-->
         <div class="form-group">
           <label>Medium</label>
-          <input type="text" name="medium" class="form-control" id="mediumInput" placeholder="Medium of artwork">
+          <input type="text" name="medium" class="form-control" id="medium" placeholder="Medium of artwork">
           <small id="mediumHelp" class="form-text text-muted">Specify the medium of the piece. Ex: painting, photograph, sculputre, etc</small>
         </div>
         <!--PRICE INPUT-->
         <div class="form-group">
             <label>Price</label>
-            <input type="number" name="price" class="form-control" id="priceInput" placeholder="Price of artwork">
+            <input type="number" name="price" class="form-control" id="price" placeholder="Price of artwork">
             <small id="priceHelp" class="form-text text-muted">Specify the appropriate price of the piece</small>
           </div>
           <!--YEAR INPUT-->
           <div class="form-group">
             <label>Year</label>
-            <input type="number" name="year" class="form-control" id="yearInput" placeholder="Year the artwork was created" onkeydown= "checkYear()">
+            <input type="number" name="year" class="form-control" id="year" placeholder="Year the artwork was created" onkeydown= "checkYear()">
             <span class='error' id='yearError'></span>
             <p></p>
             <small id="yearHelp" class="form-text text-muted">Specify the Year of the piece </small>
