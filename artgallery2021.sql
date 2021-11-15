@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2021 at 09:30 PM
+-- Generation Time: Nov 16, 2021 at 12:23 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -84,7 +84,6 @@ INSERT INTO `artwork` (`titleID`, `title`, `artistID`, `url`, `medium`, `price`,
 (7, 'Chicago Snow and Sun', 7, 'images/chiBW.jpg', 'photography', '200', 2014),
 (8, 'Hong Kong Evening', 8, 'images/cloudCity.jpg', 'photography', '500', 2020),
 (9, 'City at Dawn Unknown', 8, 'images/dawnCity.jpg', 'photography', '500', 2021),
-(10, 'Rainbow Digital Art', 10, 'images/digArt1.jpg', 'digital art', '500', 2019),
 (11, 'Digital Desert', 11, 'images/digArt2.jpg', 'digital art', '250', 2020),
 (12, 'Cyber Portrait', 10, 'images/digArt3.jpg', 'digital art', '200', 2019),
 (13, 'A Hole in Digital Desert', 11, 'images/digArt4.jpg', 'digital art', '200', 2021),
@@ -100,7 +99,15 @@ INSERT INTO `artwork` (`titleID`, `title`, `artistID`, `url`, `medium`, `price`,
 (23, 'Black and White NYC Birdseye View', 14, 'images/NYCbw.jpg', 'photography', '500', 2019),
 (24, 'Japanese Streets 2 at Night', 1, 'images/pathJapan.jpg', 'photography', '200', 2019),
 (25, 'Seattle Night on Lake', 1, 'images/seattle.jpg', 'photography', '200', 2019),
-(26, 'Tianjin at Sunset', 1, 'images/tianjin.jpg', 'photography', '300', 2018);
+(26, 'Tianjin at Sunset', 1, 'images/tianjin.jpg', 'photography', '300', 2018),
+(27, 'Rocket Launch 2021', 2, 'images/rocketLaunch.jpg', 'photography', '2500', 2021),
+(28, 'Blue Starry Night', 8, 'images/blueStars.jpg', 'photograph', '1300', 2020),
+(29, 'Solar System Graphic', 1, 'images/solarSystem.jpg', 'digital art', '100', 2002),
+(30, 'Orange Colored Nova', 10, 'images/orangeGalaxy.jpg', 'photograph', '5000', 2020),
+(31, 'Planetary Glow', 8, 'images/planetary.jpg', 'photograph', '500', 2006),
+(32, 'Interplanetary Views', 6, 'images/galaxyPurple.jpg', 'photograph', '1200', 2009),
+(33, 'Hong Kong Streets in the City', 4, 'images/hongKongStreet.jpg', 'photograph', '590', 2021),
+(34, 'The Quest - Blue', 5, 'images/acrylicPainting.jpg', 'painting', '1200', 2015);
 
 -- --------------------------------------------------------
 
@@ -203,7 +210,29 @@ INSERT INTO `artworksubject` (`titleID`, `subject`) VALUES
 (25, 'city'),
 (25, 'color'),
 (25, 'night'),
-(25, 'Seattle');
+(25, 'Seattle'),
+(27, 'night'),
+(27, 'space'),
+(28, 'night'),
+(28, 'space'),
+(28, 'stars'),
+(29, 'digital'),
+(29, 'solar system'),
+(29, 'space'),
+(30, 'night'),
+(30, 'space'),
+(30, 'stars'),
+(31, 'digital'),
+(31, 'night'),
+(31, 'space'),
+(32, 'space'),
+(32, 'stars'),
+(33, 'city'),
+(33, 'night'),
+(34, 'color'),
+(34, 'night'),
+(34, 'space'),
+(34, 'stars');
 
 -- --------------------------------------------------------
 
@@ -216,7 +245,8 @@ CREATE TABLE `customer` (
   `fName` char(255) NOT NULL,
   `lName` char(255) NOT NULL,
   `phoneNumber` varchar(12) NOT NULL,
-  `title` char(255) NOT NULL
+  `title` char(255) NOT NULL,
+  `customerMessage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

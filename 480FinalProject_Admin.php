@@ -150,32 +150,32 @@
         <!--ARTIST ID INPUT-->
         <div class="form-group">
           <label>Artist ID</label>
-          <input type="number" name="artistID" class="form-control" id="artistID" placeholder="Enter artist ID of artist">
+          <input type="number" name="artistID" class="form-control" id="artistID" placeholder="Enter artist ID of artist" autocomplete="off">
           <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small>
         </div>
         <!--MEDIUM INPUT-->
         <div class="form-group">
           <label>Medium</label>
-          <input type="text" name="medium" class="form-control" id="medium" placeholder="Medium of artwork">
+          <input type="text" name="medium" class="form-control" id="medium" placeholder="Medium of artwork" autocomplete="off">
           <small id="mediumHelp" class="form-text text-muted">Specify the medium of the piece. Ex: painting, photograph, sculputre, etc</small>
         </div>
         <!--PRICE INPUT-->
         <div class="form-group">
             <label>Price</label>
-            <input type="number" name="price" class="form-control" id="price" placeholder="Price of artwork">
+            <input type="number" name="price" class="form-control" id="price" placeholder="Price of artwork" autocomplete="off">
             <small id="priceHelp" class="form-text text-muted">Specify the appropriate price of the piece</small>
           </div>
           <!--YEAR INPUT-->
           <div class="form-group">
             <label>Year</label>
-            <input type="number" name="year" class="form-control" id="year" placeholder="Year the artwork was created" onkeydown= "checkYear()">
+            <input type="number" name="year" class="form-control" id="year" placeholder="Year the artwork was created" onkeydown= "checkYear()" autocomplete="off">
             <span class='error' id='yearError'></span>
             <p></p>
             <small id="yearHelp" class="form-text text-muted">Specify the Year of the piece </small>
           </div>
       <div class="form-group">
           <label>URL</label>
-          <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeydown="checkURL()">
+          <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeydown="checkURL()" autocomplete="off">
           <span class='error' id='urlError'></span>
             <p></p>
           <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format images/yourImage.jpg </small>

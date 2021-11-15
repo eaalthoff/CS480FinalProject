@@ -69,7 +69,7 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="fName" name="fName" class="form-control">
+                      <input type="text" id="fName" name="fName" class="form-control" autocomplete="off">
                       <label for="form-contact-name" class="">First Name</label>
                     </div>
                   </div>
@@ -78,7 +78,7 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="lName" name="lName" class="form-control">
+                      <input type="text" id="lName" name="lName" class="form-control" autocomplete="off">
                       <label for="form-contact-email" class="">Last Name</label>
                     </div>
                   </div>
@@ -93,7 +93,7 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="number" id="phoneNumber" name="phoneNumber" class="form-control">
+                      <input type="number" id="phoneNumber" name="phoneNumber" class="form-control" autocomplete="off">
                       <label for="form-contact-phone" class="">Your phone</label>
                     </div>
                   </div>
@@ -102,7 +102,7 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="title" name="title" class="form-control">
+                      <input type="text" id="title" name="title" class="form-control" autocomplete="off">
                       <label for="form-contact-company" class="">Your Title</label>
                     </div>
                   </div>
@@ -117,7 +117,7 @@
                   <!-- Grid column -->
                   <div class="col-md-12">
                     <div class="md-form mb-0">
-                      <textarea id="customerMessage" name="customerMessage" class="form-control md-textarea" rows="3"></textarea>
+                      <textarea id="customerMessage" name="customerMessage" class="form-control md-textarea" rows="3" autocomplete="off"></textarea>
                       <label for="form-contact-message">Your message about the artwork inquiry</label>
                     </div>
                   </div>

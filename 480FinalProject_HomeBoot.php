@@ -86,7 +86,7 @@
     <div class="container">
     <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="form-group row">
         <div class="col-sm-10">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" autocomplete="off">
     </div>
     <div class="col-sm-2">
         <button class="btn btn-outline-success btn-block" type="submit">Search</button>
