@@ -51,13 +51,13 @@
             });
         });
     </script>
-    <title>Gallery w/ Bootstrap</title>
+    <title>Gallery</title>
 </head>
 
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="480FinalProject_HomeBoot.html">Gallery</a>
+        <a class="navbar-brand" href="480FinalProject_HomeBoot.php">Gallery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@
                     <a class="nav-link" href="480FinalProject_About.html">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_ContactUs.html">Contact Us</a>
+                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
                 </li>
