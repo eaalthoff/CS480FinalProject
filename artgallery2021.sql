@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2021 at 12:23 AM
+-- Generation Time: Nov 17, 2021 at 12:22 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -50,9 +50,10 @@ INSERT INTO `artist` (`artistID`, `fName`, `lName`, `birthplace`, `email`) VALUE
 (6, 'Julia', 'Smith', 'Wisconsin, USA', 'jsmith@gmail.com'),
 (7, 'Hannah', 'Otis', 'Wisconsin, USA', 'hotis@gmail.com'),
 (8, 'Chad', 'Kengisn', 'Neveda, USA', 'ckengisn@gmail.com'),
-(10, 'Bumi', 'Putra', 'Kuala Lumpur, Malaysia', 'bputra@gmail.com'),
+(10, 'Test', 'Artist', 'Argentina', 'a@gmail.com'),
 (11, 'Daniel', 'Yee', 'Shanghai, China', 'dyee@gmail.com'),
-(13, 'Duy', 'Phan', 'Ha Noi, Viet Nam', 'dphan@gmail.com');
+(13, 'Duy', 'Phan', 'Ha Noi, Viet Nam', 'dphan@gmail.com'),
+(14, 'Anna', 'Tempert', 'Sun Prairie, WI', 'atempert@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -156,9 +157,6 @@ INSERT INTO `artworksubject` (`titleID`, `subject`) VALUES
 (9, 'city'),
 (9, 'color'),
 (9, 'night'),
-(10, 'color'),
-(10, 'digital art'),
-(10, 'portrait'),
 (11, 'color'),
 (11, 'digital art'),
 (11, 'nature'),
@@ -263,7 +261,8 @@ ALTER TABLE `artist`
 -- Indexes for table `artwork`
 --
 ALTER TABLE `artwork`
-  ADD PRIMARY KEY (`titleID`);
+  ADD PRIMARY KEY (`titleID`),
+  ADD KEY `artistID` (`artistID`);
 
 --
 -- Indexes for table `artworksubject`
@@ -276,6 +275,22 @@ ALTER TABLE `artworksubject`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customerID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `artwork`
+--
+ALTER TABLE `artwork`
+  ADD CONSTRAINT `artistID` FOREIGN KEY (`artistID`) REFERENCES `artist` (`artistID`);
+
+--
+-- Constraints for table `artworksubject`
+--
+ALTER TABLE `artworksubject`
+  ADD CONSTRAINT `titleID` FOREIGN KEY (`titleID`) REFERENCES `artwork` (`titleID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
