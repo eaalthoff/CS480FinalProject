@@ -346,6 +346,74 @@
                     echo "</form>";
                 } 
                 else{
+                    //search by medium
+                    $sql = "select titleID, url, title from artwork where medium like '%$search%'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 3){
+                        echo '<form>';
+                        echo '<div class="row">';
+                        echo '<div class="card-deck">';
+                        
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card mb-4 box-shadow">';
+                            echo '<label>';
+                            echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                            echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
+                            echo '<div class="card-body">';
+                            echo '<p class="card-text">'. $row['title'].'</p>';
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    } 
+                    else if($result->num_rows ==2){
+                        echo '<form>';
+                        echo '<div class="row justify-content-md-center">';
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card mb-4 box-shadow">';
+                            echo '<label>';
+                            echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                            echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
+                            echo '<div class="card-body">';
+                            echo '<p class="card-text">'. $row['title'].'</p>';
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    }
+                    else if ($result->num_rows == 1){
+                        echo '<form>';
+                        echo '<div class="row justify-content-md-center">';
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card mb-4 box-shadow">';
+                            echo '<label>';
+                            echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                            echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
+                            echo '<div class="card-body">';
+                            echo '<p class="card-text">'. $row['title'].'</p>';
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    } 
+                else{
                     echo '<div class="row justify-content-md-center">';
                     echo "<p class='lead'>0 results for search " . $search . "</p>";
                     echo "</div>";
@@ -353,6 +421,7 @@
                     echo "</div>";
         
                 }
+            }
             } 
         }
     }
