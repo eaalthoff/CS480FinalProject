@@ -57,10 +57,7 @@
             $(".galImage").click(function(){
                 var imgid=$(this).attr('id');
                 $('#bigImage').attr('src', $(this).attr('src'));
-                //console.log(imgid);
                 var inputval=$('#' + imgid +'check').val();
-                //console.log(inputval);
-                //probs not working because it's not a form: get is used to collect form data dummy
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -128,15 +125,11 @@
     $username = "root";
     $password = "";
     $dbname = "artgallery2021";
-
-    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
+        
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
-    //echo "Connected successfully<br>";
 
     $search = isset($_GET["search"])?$_GET["search"]:"";
     
@@ -147,9 +140,7 @@
         if ($result->num_rows > 3){
             echo '<form>';
             echo '<div class="row">';
-            echo '<div class="card-deck">';
-            
-            // output data of each row
+            echo '<div class="card-deck">';            
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="card mb-4 box-shadow">';
@@ -216,9 +207,7 @@
             if ($result->num_rows > 3){
                 echo '<form>';
                 echo '<div class="row">';
-                echo '<div class="card-deck">';
-                
-                // output data of each row
+                echo '<div class="card-deck">';                
                 while($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-4 box-shadow">';
@@ -285,8 +274,6 @@
                     echo '<form>';
                     echo '<div class="row">';
                     echo '<div class="card-deck">';
-                    
-                    // output data of each row
                     while($row = $result->fetch_assoc()) {
                         echo '<div class="col-md-4">';
                         echo '<div class="card mb-4 box-shadow">';
@@ -353,8 +340,6 @@
                         echo '<form>';
                         echo '<div class="row">';
                         echo '<div class="card-deck">';
-                        
-                        // output data of each row
                         while($row = $result->fetch_assoc()) {
                             echo '<div class="col-md-4">';
                             echo '<div class="card mb-4 box-shadow">';
@@ -434,7 +419,6 @@
             echo '<div class="row">';
             echo '<div class="card-deck">';
             
-            // output data of each row
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="card mb-4 box-shadow">';
