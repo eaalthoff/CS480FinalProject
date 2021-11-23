@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2021 at 12:22 AM
+-- Generation Time: Nov 23, 2021 at 05:08 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -247,6 +247,26 @@ CREATE TABLE `customer` (
   `customerMessage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registration`
+--
+
+CREATE TABLE `registration` (
+  `id` int(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`id`, `username`, `name`, `password`) VALUES
+(1, 'testuser@gmail.com', 'Test', 'Password123');
+
 --
 -- Indexes for dumped tables
 --
@@ -275,6 +295,12 @@ ALTER TABLE `artworksubject`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customerID`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Constraints for dumped tables

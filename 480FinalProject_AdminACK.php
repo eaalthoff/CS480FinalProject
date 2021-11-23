@@ -44,7 +44,7 @@
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/480FinalProject/480FinalProject_HomeBoot.php">Gallery</a>
+        <a class="navbar-brand" href="http://localhost/480FinalProject/480FinalProject_HomeBoot.html">Gallery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -63,6 +63,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
               </li>
             </ul>
         </div>
@@ -103,9 +106,10 @@
     //echo "Connected successfully<br>";
 
     //take the values in the form on Admin page
+    //PHP $_REQUEST is a PHP super global variable which is used to collect data after submitting an HTML form.
     $title = $_REQUEST['title'];
     $titleID = rand(1,10000000); //$_REQUEST['titleID'] later...
-    $artistID = $_REQUEST['artistID'];
+    $artistID = $_REQUEST['artistID']; //need to get artistID value from form, use 'value'?
     $url = $_REQUEST['url'];
     $medium = $_REQUEST['medium'];
     $price = $_REQUEST['price'];

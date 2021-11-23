@@ -71,13 +71,13 @@
 
 
     </script>
-    <title>Gallery Admin</title>
+    <title>Gallery w/ Bootstrap</title>
 </head>
 
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="480FinalProject_HomeBoot.php">Gallery</a>
+        <a class="navbar-brand" href="http://localhost/480FinalProject/480FinalProject_HomeBoot.html">Gallery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -96,6 +96,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
               </li>
             </ul>
         </div>
@@ -147,12 +150,39 @@
         </div> -->
 
 
-        <!--ARTIST ID INPUT-->
+        <!--ARTIST ID INPUT -- Needs to be a drop down with current artists from DB-->
         <div class="form-group">
-          <label>Artist ID</label>
+
+        <label>Choose the artist</label>
+          <select  id="artistsDrop">
+            <!--Need to auto generate artists from DB-->
+            <option value="1" name="artistID" id="artistID1">Cody Filler, NYC</option>
+            <option value="2" name="artistID" id="artistID2">Armin Forster, California</option>
+            <option value="3" name="artistID" id="artistID3">Karen Warfel, Texas</option>
+            <option value="4" name="artistID" id="artistID4">Engin Akyurt, Turkey</option>
+            <option value="5" name="artistID" id="artistID5">Ben Kerck, Ohio</option>
+            <option value="6" name="artistID" id="artistID6">Julia Smith, Wisconsin</option>
+            <option value="7" name="artistID" id="artistID7">Hannah Otis, Wisconsin</option>
+            <option value="8" name="artistID" id="artistID8">Chad Kengisn, Neveda</option>
+            <option value="10" name="artistID" id="artistID10">Test Artist, Argentina</option>
+            <option value="11" name="artistID" id="artistID11"> Daniel Yee, China</option>
+            <option value="13" name="artistID" id="artistID13">Duy Phan, Vietnam</option>
+            <option value="14" name="artistID" id="artistID14">Anna Tempert, Wisconsin</option>
+          </select>
+
+          <!-- <script>
+            var selectionArtID = document.getElementById("artistsDrop");
+            var artistID = selectionArtID.value;
+          </script> -->
+
+
+         <!-- <label>Artist ID</label>
           <input type="number" name="artistID" class="form-control" id="artistID" placeholder="Enter artist ID of artist" autocomplete="off">
-          <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small>
+          <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small> -->
         </div>
+
+
+
         <!--MEDIUM INPUT-->
         <div class="form-group">
           <label>Medium</label>
