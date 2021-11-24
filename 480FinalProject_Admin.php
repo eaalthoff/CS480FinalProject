@@ -57,11 +57,11 @@
 
         //regex URL
         function checkURL() {
-        var RegExp = /^Images\/[a-zA-Z0-9]+\.(jpg|png|jpeg)$/; //for some reason it doesn't like the gs
+        var RegExp = /images\//;
         var urlInput = document.getElementById("urlInput").value;
         var errorSpan = document.getElementById("urlError");
         if(!RegExp.test(urlInput)) {
-            errorSpan.innerHTML = "<br>Error: Please enter a url in the form Images/yourImageName.jpg"
+            errorSpan.innerHTML = "<br>Error: Please enter a url in the form images/yourImageName.jpg"
         } else {
             console.log("submitted");
             errorSpan.innerHTML = "";
@@ -77,7 +77,7 @@
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/480FinalProject/480FinalProject_HomeBoot.html">Gallery</a>
+        <a class="navbar-brand" href="480FinalProject_HomeBoot.php">Gallery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -200,7 +200,7 @@
           <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeydown="checkURL()" autocomplete="off">
           <span class='error' id='urlError'></span>
             <p></p>
-          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format Images/yourImage.jpg </small>
+          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format images/yourImage.jpg </small>
         </div>
         <button type="submit" class="btn btn-outline-success btn-block" style="width: 25%;">Submit</button>
         </form> 
