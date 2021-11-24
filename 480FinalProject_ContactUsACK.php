@@ -38,6 +38,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
+              </li>
             </ul>
         </div>
     </nav>

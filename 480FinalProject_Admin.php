@@ -71,7 +71,7 @@
 
 
     </script>
-    <title>Gallery Admin</title>
+    <title>Gallery w/ Bootstrap</title>
 </head>
 
 <body>
@@ -96,6 +96,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
               </li>
             </ul>
         </div>
@@ -137,22 +140,41 @@
           <input type="text" name="title" class="form-control" id="title" placeholder="Enter title of artwork">
           <small id="titleHelp" class="form-text text-muted">Add the title of the artwork</small>
         </div>
-
-
-        <!--TITLE ID INPUT -- RANDOM GENERATE FOR NOW...
+        <!--ARTIST ID INPUT -- Needs to be a drop down with current artists from DB-->
         <div class="form-group">
-          <label>Title ID</label>
-          <input type="number" name="titleID" class="form-control" id="titleID" placeholder="Enter title ID of artwork">
-          <small id="titleIdHelp" class="form-text text-muted">Add the title ID of the artwork</small>
-        </div> -->
 
+         <!--FIX these to be auto run through PHP-->
+        <label>Choose the artist</label>
 
-        <!--ARTIST ID INPUT-->
-        <div class="form-group">
-          <label>Artist ID</label>
-          <input type="number" name="artistID" class="form-control" id="artistID" placeholder="Enter artist ID of artist" autocomplete="off">
-          <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small>
+        <?php 
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "artgallery2021";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
+        //echo "Connected successfully<br>";
+        $sql = "SELECT * FROM artist";
+        $result = $conn->query($sql);
+        if(mysqli_query($conn, $sql)){
+          echo "<select name='artistID'>";
+          while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['artistID'] . "'>" . $row['fName'] . " " . $row['lName'] . "</option>";
+          }
+          echo "</select>";
+      } else{
+          echo "ERROR: Sorry $sql. " 
+              . mysqli_error($conn);
+      }
+        ?>
         </div>
+
         <!--MEDIUM INPUT-->
         <div class="form-group">
           <label>Medium</label>
