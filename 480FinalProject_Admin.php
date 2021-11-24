@@ -57,11 +57,11 @@
 
         //regex URL
         function checkURL() {
-        var RegExp = /images\//;
+        var RegExp = /^Images\/[a-zA-Z0-9]+\.(jpg|png|jpeg)$/; //for some reason it doesn't like the gs
         var urlInput = document.getElementById("urlInput").value;
         var errorSpan = document.getElementById("urlError");
         if(!RegExp.test(urlInput)) {
-            errorSpan.innerHTML = "<br>Error: Please enter a url in the form images/yourImageName.jpg"
+            errorSpan.innerHTML = "<br>Error: Please enter a url in the form Images/yourImageName.jpg"
         } else {
             console.log("submitted");
             errorSpan.innerHTML = "";
@@ -200,7 +200,7 @@
           <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeydown="checkURL()" autocomplete="off">
           <span class='error' id='urlError'></span>
             <p></p>
-          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format images/yourImage.jpg </small>
+          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format Images/yourImage.jpg </small>
         </div>
         <button type="submit" class="btn btn-outline-success btn-block" style="width: 25%;">Submit</button>
         </form> 
