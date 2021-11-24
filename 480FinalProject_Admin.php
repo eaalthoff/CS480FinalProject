@@ -140,48 +140,40 @@
           <input type="text" name="title" class="form-control" id="title" placeholder="Enter title of artwork">
           <small id="titleHelp" class="form-text text-muted">Add the title of the artwork</small>
         </div>
-
-
-        <!--TITLE ID INPUT -- RANDOM GENERATE FOR NOW...
-        <div class="form-group">
-          <label>Title ID</label>
-          <input type="number" name="titleID" class="form-control" id="titleID" placeholder="Enter title ID of artwork">
-          <small id="titleIdHelp" class="form-text text-muted">Add the title ID of the artwork</small>
-        </div> -->
-
-
         <!--ARTIST ID INPUT -- Needs to be a drop down with current artists from DB-->
         <div class="form-group">
 
+         <!--FIX these to be auto run through PHP-->
         <label>Choose the artist</label>
-          <select  id="artistsDrop">
-            <!--Need to auto generate artists from DB-->
-            <option value="1" name="artistID" id="artistID1">Cody Filler, NYC</option>
-            <option value="2" name="artistID" id="artistID2">Armin Forster, California</option>
-            <option value="3" name="artistID" id="artistID3">Karen Warfel, Texas</option>
-            <option value="4" name="artistID" id="artistID4">Engin Akyurt, Turkey</option>
-            <option value="5" name="artistID" id="artistID5">Ben Kerck, Ohio</option>
-            <option value="6" name="artistID" id="artistID6">Julia Smith, Wisconsin</option>
-            <option value="7" name="artistID" id="artistID7">Hannah Otis, Wisconsin</option>
-            <option value="8" name="artistID" id="artistID8">Chad Kengisn, Neveda</option>
-            <option value="10" name="artistID" id="artistID10">Test Artist, Argentina</option>
-            <option value="11" name="artistID" id="artistID11"> Daniel Yee, China</option>
-            <option value="13" name="artistID" id="artistID13">Duy Phan, Vietnam</option>
-            <option value="14" name="artistID" id="artistID14">Anna Tempert, Wisconsin</option>
-          </select>
 
-          <!-- <script>
-            var selectionArtID = document.getElementById("artistsDrop");
-            var artistID = selectionArtID.value;
-          </script> -->
+        <?php 
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "artgallery2021";
 
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-         <!-- <label>Artist ID</label>
-          <input type="number" name="artistID" class="form-control" id="artistID" placeholder="Enter artist ID of artist" autocomplete="off">
-          <small id="artistIdHelp" class="form-text text-muted">Add the artist ID of the artist</small> -->
+        // Check connection
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
+        //echo "Connected successfully<br>";
+        $sql = "SELECT * FROM artist";
+        $result = $conn->query($sql);
+        if(mysqli_query($conn, $sql)){
+          echo "<select name='artistID'>";
+          while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['artistID'] . "'>" . $row['fName'] . " " . $row['lName'] . "</option>";
+          }
+          echo "</select>";
+      } else{
+          echo "ERROR: Sorry $sql. " 
+              . mysqli_error($conn);
+      }
+        ?>
         </div>
-
-
 
         <!--MEDIUM INPUT-->
         <div class="form-group">
