@@ -28,22 +28,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $(".galImage").hover(function(){
-                $(this).css("opacity", ".5");
-            }, function(){
-                $(this).css("opacity", "1");
-            });
-            $(".galImage").click(function(){
-                $('#bigImage').attr('src', $(this).attr('src'));
-                $('#imagemodal').modal('show');   
-            });
-        });
-
-
         //regex year
         function checkYear() {
-        var RegExp = /^[12][0-9]{2}$/; //I have no idea why /^[12][0-9]{3}$/ wasn't working, but {2} is a temp workaround
+        var RegExp = /^[12][0-9]{3}$/;
         var yearInput = document.getElementById("year").value;
         var errorSpan = document.getElementById("yearError");
         if(!RegExp.test(yearInput)) {
@@ -57,11 +44,11 @@
 
         //regex URL
         function checkURL() {
-        var RegExp = /images\//;
+        var RegExp = /^Images\/[a-zA-Z0-9]+\.(jpg|png|jpeg)$/;
         var urlInput = document.getElementById("urlInput").value;
         var errorSpan = document.getElementById("urlError");
         if(!RegExp.test(urlInput)) {
-            errorSpan.innerHTML = "<br>Error: Please enter a url in the form images/yourImageName.jpg"
+            errorSpan.innerHTML = "<br>Error: Please enter a url in the form Images/yourImageName.jpg"
         } else {
             console.log("submitted");
             errorSpan.innerHTML = "";
@@ -85,8 +72,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_About.html">About</a>
@@ -94,8 +81,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+                <li class="nav-item active">
+                  <a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
@@ -163,7 +150,7 @@
         $sql = "SELECT * FROM artist";
         $result = $conn->query($sql);
         if(mysqli_query($conn, $sql)){
-          echo "<select name='artistID'>";
+          echo "<select name='artistID' class='form-control'>";
           while ($row = $result->fetch_assoc()) {
             echo "<option value='" . $row['artistID'] . "'>" . $row['fName'] . " " . $row['lName'] . "</option>";
           }
@@ -179,7 +166,7 @@
         <div class="form-group">
           <label>Medium</label>
           <input type="text" name="medium" class="form-control" id="medium" placeholder="Medium of artwork" autocomplete="off">
-          <small id="mediumHelp" class="form-text text-muted">Specify the medium of the piece. Ex: painting, photograph, sculputre, etc</small>
+          <small id="mediumHelp" class="form-text text-muted">Specify the medium of the piece. Ex: painting, photograph, sculpture, etc</small>
         </div>
         <!--PRICE INPUT-->
         <div class="form-group">
@@ -190,17 +177,17 @@
           <!--YEAR INPUT-->
           <div class="form-group">
             <label>Year</label>
-            <input type="number" name="year" class="form-control" id="year" placeholder="Year the artwork was created" onkeydown= "checkYear()" autocomplete="off">
+            <input type="number" name="year" class="form-control" id="year" placeholder="Year the artwork was created" onkeyup= "checkYear()" autocomplete="off">
             <span class='error' id='yearError'></span>
             <p></p>
             <small id="yearHelp" class="form-text text-muted">Specify the Year of the piece </small>
           </div>
       <div class="form-group">
           <label>URL</label>
-          <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeydown="checkURL()" autocomplete="off">
+          <input type="text" name="url" class="form-control" id="urlInput" placeholder="Enter the URL of the artwork" onkeyup="checkURL()" autocomplete="off">
           <span class='error' id='urlError'></span>
             <p></p>
-          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format images/yourImage.jpg </small>
+          <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format Images/yourImage.jpg </small>
         </div>
         <button type="submit" class="btn btn-outline-success btn-block" style="width: 25%;">Submit</button>
         </form> 

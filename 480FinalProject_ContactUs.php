@@ -12,6 +12,71 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  function checkPhone(){
+    var RegExp = /^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/;
+        var phoneInput = document.getElementById("phoneInput").value;
+        var errorSpan = document.getElementById("phoneError");
+        if(!RegExp.test(phoneInput)) {
+            errorSpan.innerHTML = "Error: Please enter a phone number in the format xxx-xxx-xxxx"
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+  }
+
+  function checkFName(){
+    var RegExp = /^[A-Z]{1}[a-z]{1,}$/;
+        var fNameInput = document.getElementById("fNameInput").value;
+        var errorSpan = document.getElementById("fNameError");
+        if(!RegExp.test(fNameInput)) {
+            errorSpan.innerHTML = "Error: Please enter a first name like Al, Ann, or Lupin."
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+  }
+
+  function checkLName(){
+    var RegExp = /[A-Z]{1}[a-z]+$/;
+        var lNameInput = document.getElementById("lNameInput").value;
+        var errorSpan = document.getElementById("lNameError");
+        if(!RegExp.test(lNameInput)) {
+            errorSpan.innerHTML = "Error: Please enter a last name like Smith, Drake, or Zenigata."
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+  }
+  function checkTitle(){
+    var RegExp = /[A-Z]{1}[a-z]+$/;
+        var titleInput = document.getElementById("titleInput").value;
+        var errorSpan = document.getElementById("titleError");
+        if(!RegExp.test(titleInput)) {
+            errorSpan.innerHTML = "Error: Please enter a title like Artist, Web Developer, or Artistic Lead."
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+  }
+  function checkMessage(){
+    var RegExp = /(\w+\,?(\s|\.))+/;
+        var customerMessageInput = document.getElementById("customerMessageInput").value;
+        var errorSpan = document.getElementById("customerMessageError");
+        if(!RegExp.test(customerMessageInput)) {
+            errorSpan.innerHTML = "Error: Please type a little more if you're going to leave a message."
+        } else {
+            console.log("submitted");
+            errorSpan.innerHTML = "";
+        }
+  }
+  
+  </script>
+  <style>
+    .error {
+            color: red;
+        }
+  </style>
 
 </head>
 
@@ -26,14 +91,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_About.html">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
@@ -72,7 +137,10 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="fName" name="fName" class="form-control" autocomplete="off">
+                      <input type="text" id="fNameInput" name="fNameInput" class="form-control" autocomplete="off" onkeyup="checkFName()">
+                      <small class='error' id='fNameError'></small>
+                      <p></p>
+                      <!--<small id="fNameHelp" class="form-text text-muted">Type a name like Al, Ann, or Lupin. </small>-->
                       <label for="form-contact-name" class="">First Name</label>
                     </div>
                   </div>
@@ -81,7 +149,10 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="lName" name="lName" class="form-control" autocomplete="off">
+                      <input type="text" id="lNameInput" name="lNameInput" class="form-control" autocomplete="off" onkeyup="checkLName()">
+                      <small class='error' id='lNameError'></small>
+                      <p></p>
+                      <!--<small id="lNameHelp" class="form-text text-muted">Type a last name like Smith, Drake, or Zenigata.</small>-->
                       <label for="form-contact-email" class="">Last Name</label>
                     </div>
                   </div>
@@ -96,7 +167,10 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="number" id="phoneNumber" name="phoneNumber" class="form-control" autocomplete="off">
+                      <input type="text" id="phoneInput" name="phoneInput" class="form-control" autocomplete="off" onkeyup="checkPhone()">
+                      <small class='error' id='phoneError'></small>
+                      <p></p>
+                      <!--<small id="phoneHelp" class="form-text text-muted">Type a phone number in the xxx-xxx-xxxx format.</small>-->
                       <label for="form-contact-phone" class="">Your phone</label>
                     </div>
                   </div>
@@ -105,7 +179,10 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="title" name="title" class="form-control" autocomplete="off">
+                      <input type="text" id="titleInput" name="titleinput" class="form-control" autocomplete="off" onkeyup="checkTitle()">
+                      <small class='error' id='titleError'></small>
+                      <p></p>
+                      <!--<small id="lNameHelp" class="form-text text-muted">Type a last name like Smith, Drake, or Zenigata </small>-->
                       <label for="form-contact-company" class="">Your Title</label>
                     </div>
                   </div>
@@ -120,7 +197,9 @@
                   <!-- Grid column -->
                   <div class="col-md-12">
                     <div class="md-form mb-0">
-                      <textarea id="customerMessage" name="customerMessage" class="form-control md-textarea" rows="3" autocomplete="off"></textarea>
+                      <textarea id="customerMessageInput" name="customerMessageInput" class="form-control md-textarea" rows="3" autocomplete="off" onkeyup="checkMessage()"></textarea>
+                      <small class='error' id='customerMessageError'></small>
+                      <p></p>
                       <label for="form-contact-message">Your message about the artwork inquiry</label>
                     </div>
                   </div>
@@ -197,7 +276,7 @@
       </section>
       <!-- Section: Contact v.3 -->
     </div>
-    <!--Modal pop-up-->
+    <!--Modal pop-up
     <div class="modal fade" id="contactConfirmModal" tabindex="-1" role="dialog" aria-labelledby="contactConfirmModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -212,7 +291,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
     </form> 
   </main>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
