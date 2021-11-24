@@ -27,6 +27,23 @@
             z-index: 2; 
             cursor: pointer;
         }
+        /* HIDE RADIO */
+        [type=radio] { 
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* IMAGE STYLES */
+        [type=radio] + img {
+            cursor: pointer;
+        }
+
+        /* CHECKED STYLES 
+        [type=radio]:checked + img {
+            outline: 2px solid #f00;
+        }*/
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -38,26 +55,36 @@
                 $(this).css("opacity", "1");
             });
             $(".galImage").click(function(){
+                var imgid=$(this).attr('id');
                 $('#bigImage').attr('src', $(this).attr('src'));
-                /*var imgsrc=$('#bigImage').attr('src');
-                $.post("480FinalProject_ModalImgInfo.php", 
-                {
-                    imginfo: imgsrc
-                },
-                function(data){
-                    $("#bigImage").after(data);
-                });*/
+                var inputval=$('#' + imgid +'check').val();
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("imgInfo").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","480FinalProject_ModalImgInfo.php?q="+inputval,true);
+                xmlhttp.send();
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("md-title").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","480FinalProject_ModalImgTitle.php?q="+inputval,true);
+                xmlhttp.send();
                 $('#imagemodal').modal('show'); 
             });
         });
     </script>
-    <title>Gallery w/ Bootstrap</title>
+    <title>Gallery</title>
 </head>
 
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="480FinalProject_HomeBoot.html">Gallery</a>
+        <a class="navbar-brand" href="480FinalProject_HomeBoot.php">Gallery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -75,11 +102,12 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
-              </li>
+                    <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
+                </li>
+                
             </ul>
         </div>
     </nav>
@@ -89,7 +117,7 @@
     <div class="container">
     <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="form-group row">
         <div class="col-sm-10">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" autocomplete="off">
+        <input class="form-control" type="search" placeholder="Search by artist, subject, title, etc." aria-label="Search" name="search" autocomplete="off">
     </div>
     <div class="col-sm-2">
         <button class="btn btn-outline-success btn-block" type="submit">Search</button>
@@ -101,15 +129,11 @@
     $username = "root";
     $password = "";
     $dbname = "artgallery2021";
-
-    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
+        
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
-    //echo "Connected successfully<br>";
 
     $search = isset($_GET["search"])?$_GET["search"]:"";
     
@@ -118,14 +142,15 @@
         $sql = "select artworksubject.subject, artworksubject.titleID, artwork.url, artwork.title from artworksubject inner join artwork on artworksubject.titleID=artwork.titleID where artworksubject.subject like '%$search%'";
         $result = $conn->query($sql);
         if ($result->num_rows > 3){
+            echo '<form>';
             echo '<div class="row">';
-            echo '<div class="card-deck">';
-            
-            // output data of each row
+            echo '<div class="card-deck">';            
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="card mb-4 box-shadow">';
-                echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                echo '<label>';
+                echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'].'check">';
+                echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                
                 echo '<div class="card-body">';
                 echo '<p class="card-text">'. $row['title'].'</p>';
                 echo "</div>";
@@ -136,13 +161,17 @@
             echo "</div>";
             echo "</div>";
             echo "</div>";
+            echo "</form>";
         } 
         else if($result->num_rows ==2){
+            echo '<form>';
             echo '<div class="row justify-content-md-center">';
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="card mb-4 box-shadow">';
-                echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                echo '<label>';
+                echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                
                 echo '<div class="card-body">';
                 echo '<p class="card-text">'. $row['title'].'</p>';
                 echo "</div>";
@@ -152,13 +181,17 @@
             echo "</div>";
             echo "</div>";
             echo "</div>";
+            echo "</form>";
         }
         else if ($result->num_rows == 1){
+            echo '<form>';
             echo '<div class="row justify-content-md-center">';
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="card mb-4 box-shadow">';
-                echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                echo '<label>';
+                echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                
                 echo '<div class="card-body">';
                 echo '<p class="card-text">'. $row['title'].'</p>';
                 echo "</div>";
@@ -168,6 +201,7 @@
             echo "</div>";
             echo "</div>";
             //echo "</div>";
+            echo "</form>";
         
         }
         else{
@@ -175,14 +209,15 @@
             $sql = "select titleID, url, title from artwork where title like '%$search%'";
             $result = $conn->query($sql);
             if ($result->num_rows > 3){
+                echo '<form>';
                 echo '<div class="row">';
-                echo '<div class="card-deck">';
-                
-                // output data of each row
+                echo '<div class="card-deck">';                
                 while($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-4 box-shadow">';
-                    echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                    echo '<label>';
+                    echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                    echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                    
                     echo '<div class="card-body">';
                     echo '<p class="card-text">'. $row['title'].'</p>';
                     echo "</div>";
@@ -193,13 +228,17 @@
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
+                echo "</form>";
             } 
             else if($result->num_rows ==2){
+                echo '<form>';
                 echo '<div class="row justify-content-md-center">';
                 while($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-4 box-shadow">';
-                    echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                    echo '<label>';
+                    echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                    echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                    
                     echo '<div class="card-body">';
                     echo '<p class="card-text">'. $row['title'].'</p>';
                     echo "</div>";
@@ -209,13 +248,17 @@
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
+                echo "</form>";
             }
             else if ($result->num_rows == 1){
+                echo '<form>';
                 echo '<div class="row justify-content-md-center">';
                 while($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-4 box-shadow">';
-                    echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                    echo '<label>';
+                    echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                    echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                    
                     echo '<div class="card-body">';
                     echo '<p class="card-text">'. $row['title'].'</p>';
                     echo "</div>";
@@ -225,20 +268,22 @@
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
+                echo "</form>";
             } 
             else{
                 //search by artist
-                $sql = "select artist.fName, artist.lName, artist.artistID, artwork.url, artwork.title from artist inner join artwork on artist.artistID=artwork.artistID where concat(artist.fName, ' ', artist.lName) like '%$search%'";
+                $sql = "select artist.fName, artist.lName, artist.artistID, artwork.titleID, artwork.url, artwork.title from artist inner join artwork on artist.artistID=artwork.artistID where concat(artist.fName, ' ', artist.lName) like '%$search%'";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 3){
+                    echo '<form>';
                     echo '<div class="row">';
                     echo '<div class="card-deck">';
-                    
-                    // output data of each row
                     while($row = $result->fetch_assoc()) {
                         echo '<div class="col-md-4">';
                         echo '<div class="card mb-4 box-shadow">';
-                        echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                        echo '<label>';
+                        echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                        echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
                         echo '<div class="card-body">';
                         echo '<p class="card-text">'. $row['title'].'</p>';
                         echo "</div>";
@@ -249,13 +294,17 @@
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
+                    echo "</form>";
                 } 
                 else if($result->num_rows ==2){
+                    echo '<form>';
                     echo '<div class="row justify-content-md-center">';
                     while($row = $result->fetch_assoc()) {
                         echo '<div class="col-md-4">';
                         echo '<div class="card mb-4 box-shadow">';
-                        echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                        echo '<label>';
+                        echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                        echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
                         echo '<div class="card-body">';
                         echo '<p class="card-text">'. $row['title'].'</p>';
                         echo "</div>";
@@ -265,13 +314,17 @@
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
+                    echo "</form>";
                 }
                 else if ($result->num_rows == 1){
+                    echo '<form>';
                     echo '<div class="row justify-content-md-center">';
                     while($row = $result->fetch_assoc()) {
                         echo '<div class="col-md-4">';
                         echo '<div class="card mb-4 box-shadow">';
-                        echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                        echo '<label>';
+                        echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                        echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
                         echo '<div class="card-body">';
                         echo '<p class="card-text">'. $row['title'].'</p>';
                         echo "</div>";
@@ -281,7 +334,74 @@
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
+                    echo "</form>";
                 } 
+                else{
+                    //search by medium
+                    $sql = "select titleID, url, title from artwork where medium like '%$search%'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 3){
+                        echo '<form>';
+                        echo '<div class="row">';
+                        echo '<div class="card-deck">';
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card mb-4 box-shadow">';
+                            echo '<label>';
+                            echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                            echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
+                            echo '<div class="card-body">';
+                            echo '<p class="card-text">'. $row['title'].'</p>';
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    } 
+                    else if($result->num_rows ==2){
+                        echo '<form>';
+                        echo '<div class="row justify-content-md-center">';
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card mb-4 box-shadow">';
+                            echo '<label>';
+                            echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                            echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
+                            echo '<div class="card-body">';
+                            echo '<p class="card-text">'. $row['title'].'</p>';
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    }
+                    else if ($result->num_rows == 1){
+                        echo '<form>';
+                        echo '<div class="row justify-content-md-center">';
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card mb-4 box-shadow">';
+                            echo '<label>';
+                            echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                            echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';                        
+                            echo '<div class="card-body">';
+                            echo '<p class="card-text">'. $row['title'].'</p>';
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    } 
                 else{
                     echo '<div class="row justify-content-md-center">';
                     echo "<p class='lead'>0 results for search " . $search . "</p>";
@@ -290,6 +410,7 @@
                     echo "</div>";
         
                 }
+            }
             } 
         }
     }
@@ -298,16 +419,19 @@
         $sql = "select titleID, url, title from artwork";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
+            echo '<form>';
             echo '<div class="row">';
             echo '<div class="card-deck">';
             
-            // output data of each row
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="card mb-4 box-shadow">';
-                echo '<img class="card-img-top galImage galImage" src="' . $row['url']. '" alt="Card image cap">';
+                echo '<label>';
+                echo '<input type="radio" name="test" value="'. $row['titleID'] .'" id="img'. $row['titleID'] .'check">';
+                echo '<img class="card-img-top galImage galImage" id="img'. $row['titleID'] .'" src="' . $row['url']. '" alt="Card image cap">';
                 echo '<div class="card-body">';
                 echo '<p class="card-text">'. $row['title'].'</p>';
+                echo '</label>';
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
@@ -316,6 +440,7 @@
             echo "</div>";
             echo "</div>";
             echo "</div>";
+            echo "</form>";
     }
 }
     
@@ -326,13 +451,14 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title">Piece title goes here</h5>
+                <h5 id="md-title" class="modal-title">Piece title goes here</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div id="mb" class="modal-body">
                   <img id="bigImage" src="" class="imagepreview" style="width: 100%;" >
+                  <p id="imgInfo"></p>
                 </div>
               </div>
             </div>
