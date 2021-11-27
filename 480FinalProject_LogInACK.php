@@ -28,8 +28,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_About.html">About</a>
@@ -40,8 +40,8 @@
                 <li class="nav-item">
                   <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
+              <li class="nav-item active">
+                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In <span class="sr-only">(current)</span></a>
               </li>
             </ul>
         </div>
