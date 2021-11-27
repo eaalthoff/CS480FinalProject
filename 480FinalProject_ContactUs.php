@@ -95,17 +95,27 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
-              </li>
+<?php
+              session_start();
+              if (!isset($_SESSION['loggedin'])) {
+                echo "<li class='nav-item'>";
+                  echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+              echo '</li>';
+              }
+              else{
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
+              echo '</li>';
+                echo "<li class='nav-item'>";
+                  echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+              echo '</li>';
+              }
+              ?>
             </ul>
         </div>
     </nav>
@@ -179,7 +189,7 @@
                   <!-- Grid column -->
                   <div class="col-md-6">
                     <div class="md-form mb-0">
-                      <input type="text" id="titleInput" name="titleinput" class="form-control" autocomplete="off" onkeyup="checkTitle()">
+                      <input type="text" id="titleInput" name="titleInput" class="form-control" autocomplete="off" onkeyup="checkTitle()">
                       <small class='error' id='titleError'></small>
                       <p></p>
                       <!--<small id="lNameHelp" class="form-text text-muted">Type a last name like Smith, Drake, or Zenigata </small>-->

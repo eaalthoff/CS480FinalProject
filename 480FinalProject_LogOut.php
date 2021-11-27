@@ -12,7 +12,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>Account Created</title>
+
+   
+    <title>Log Out</title>
 </head>
 
 <body>
@@ -36,14 +38,14 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
-session_start();
+//session_start();
 if (!isset($_SESSION['loggedin'])) {
-  echo "<li class='nav-item active'>";
-    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
 echo '</li>';
 }
 else{
-  echo '<li class="nav-item active">';
+  echo '<li class="nav-item">';
   echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
 echo '</li>';
   echo "<li class='nav-item'>";
@@ -58,28 +60,6 @@ echo '</li>';
     <main role="main">
     <div class="album py-5 bg-light">
     <div class="container">
-
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    //echo "Connected successfully<br>";
-    
-    $conn->close();
-?>
-
-
-
-
 <!--Log In form content-->
 <section class="vh-100">
   <div class="container-fluid">
@@ -91,9 +71,11 @@ echo '</li>';
         </div>
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
-        <h1>Thank you for creating an account with us.</h1>
-         
+<?php
+session_start();
+session_destroy();
+echo '<p>You have successfully logged out.</p>'
+?>
         </div>
 
       </div>

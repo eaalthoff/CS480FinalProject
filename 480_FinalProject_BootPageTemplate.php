@@ -23,17 +23,27 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
-                </li>
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+    echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+echo '</li>';
+}
+else{
+    echo '<li class="nav-item">';
+    echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
+echo '</li>';
+    echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
             </ul>
         </div>
     </nav>

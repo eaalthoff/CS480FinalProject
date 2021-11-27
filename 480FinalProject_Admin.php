@@ -58,9 +58,15 @@
 
 
     </script>
-    <title>Gallery w/ Bootstrap</title>
+    <title>Gallery Admin</title>
 </head>
-
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: 480FinalProject_LogIn.php');
+	exit;
+}
+?>
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -76,17 +82,29 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
-              </li>
+                
+<?php
+//session_start();
+if (!isset($_SESSION['loggedin'])) {
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+echo '</li>';
+header("Location: 480FinalProject_LogIn.php");
+}
+else if(isset($_SESSION['loggedin'])){
+  echo '<li class="nav-item active">';
+    echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
+echo '</li>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
             </ul>
         </div>
     </nav>

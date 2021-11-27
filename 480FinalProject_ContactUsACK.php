@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-  <title>Gallery Contact Us</title>
+  <title>Gallery Inquiry Sent</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -30,16 +30,28 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
+<!--This php tag needs to not be tabbed out for the session to work-->
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+echo '</li>';
+}
+else{
+  echo '<li class="nav-item">';
+  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
+echo '</li>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
               </li>
             </ul>
         </div>
@@ -181,11 +193,11 @@
 
     //take the values in the form on Admin page
     $customerID = rand(1,100000); //THIS IS TEMP. We need to generate a customerID every run, but I don't know how yet
-    $fName = $_REQUEST['fName'];
-    $lName = $_REQUEST['lName'];
-    $phoneNumber = $_REQUEST['phoneNumber'];
-    $title = $_REQUEST['title'];
-    $customerMessage = $_REQUEST['customerMessage'];
+    $fName = $_REQUEST['fNameInput'];
+    $lName = $_REQUEST['lNameInput'];
+    $phoneNumber = $_REQUEST['phoneInput'];
+    $title = $_REQUEST['titleInput'];
+    $customerMessage = $_REQUEST['customerMessageInput'];
 
     //insert data into table
    $sql = "INSERT INTO customer VALUES ('$customerID',

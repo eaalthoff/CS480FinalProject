@@ -32,17 +32,27 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-              </li>
-              <li class="nav-item active">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In <span class="sr-only">(current)</span></a>
-              </li>
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+echo '</li>';
+}
+else{
+  echo '<li class="nav-item">';
+  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
+echo '</li>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
             </ul>
         </div>
     </nav>
@@ -50,35 +60,6 @@
     <main role="main">
     <div class="album py-5 bg-light">
     <div class="container">
-
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected successfully<br>";
-    
-
-    //PHP to validate the log in session
-    
-
-
-
-
-
-    $conn->close();
-?>
-
-
-
 
 <!--Log In form content-->
 <section class="vh-100">
@@ -91,7 +72,13 @@
         </div>
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
+<?php
+if (isset($_SESSION['loggedin'])) {
+echo 'Welcome ' . $_SESSION['name'] . '!';}
+else{
+header("Location: 480FinalProject_LogIn.php");
+}
+?>
         </div>
 
       </div>
