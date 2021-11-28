@@ -38,7 +38,7 @@
             });
         });
     </script>
-    <title>Gallery w/ Bootstrap</title>
+    <title>Gallery Admin</title>
 </head>
 
 <body>
@@ -56,17 +56,27 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>
-              </li>
+                <?php
+              session_start();
+              if (!isset($_SESSION['loggedin'])) {
+                echo "<li class='nav-item'>";
+                  echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+              echo '</li>';
+              }
+              else{
+                echo '<li class="nav-item active">';
+                echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
+              echo '</li>';
+                echo "<li class='nav-item'>";
+                  echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+              echo '</li>';
+              }
+              ?>
             </ul>
         </div>
     </nav>
@@ -103,6 +113,31 @@
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
+    /* Just some SQL injection prevention stuff I was messing with
+    $stmt = $conn->prepare("INSERT INTO artwork (titleID,title,artistID,url,medium,price,year)
+    VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bindParam('i', rand(1,10000000));
+    $stmt->bindParam('s', $_REQUEST['title']);
+    $stmt->bindParam('i', $_REQUEST['artistID']);
+    $stmt->bindParam('s', $_REQUEST['url']);
+    $stmt->bindParam('s', $_REQUEST['medium']);
+    $stmt->bindParam('i', $_REQUEST['price']);
+    $stmt->bindParam('i', $_REQUEST['year']);
+
+
+    $stmt->execute();
+    if($stmt->execute()==true){
+        echo "<br><center><h4>Data stored in a artwork table successfully.</h4></center>";
+        echo "<br><center><h4>Data stored in Artwork: </h4></center>";
+       // echo nl2br("<center><h4> \n$title\n $titleID\n $artistID\n $medium\n $price \n$year \n$url </h4></center>");
+    }
+    else{
+        echo "ERROR: Sorry $sql. " 
+        . mysqli_error($conn);
+    }
+    $conn->close();*/
+
+    
     //echo "Connected successfully<br>";
 
     //take the values in the form on Admin page
@@ -116,7 +151,7 @@
     $year = $_REQUEST['year'];
 
     //insert data into table
-    $sql = "INSERT INTO artwork VALUES ('$titleID',
+   $sql = "INSERT INTO artwork VALUES ('$titleID',
                                         '$title',
                                         '$artistID', 
                                         '$url',

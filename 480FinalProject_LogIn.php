@@ -55,17 +55,29 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-              </li>
-              <li class="nav-item active">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In <span class="sr-only">(current)</span></a>
-              </li>
+<!--The php tags need to not be tabbed out for the session to work-->
+<?php
+ob_start();
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+  echo "<li class='nav-item active'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
+echo '</li>';
+}
+else{
+  echo '<li class="nav-item">';
+  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
+echo '</li>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
             </ul>
         </div>
     </nav>
@@ -73,27 +85,6 @@
     <main role="main">
     <div class="album py-5 bg-light">
     <div class="container">
-
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    //echo "Connected successfully<br>";
-    
-    $conn->close();
-?>
-
-
-
 
 <!--Log In form content-->
 <section class="vh-100">
@@ -107,7 +98,7 @@
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-          <form action="480FinalProject_LogInACK.php" method="post" style="width: 23rem;">
+          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" style="width: 23rem;">
 
             <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
 
@@ -123,24 +114,59 @@
             </div>
 
             <div class="pt-1 mb-4">
-              <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+              <button class="btn btn-info btn-lg btn-block" name="submit" type="submit" value="Submit Form">Login</button>
             </div>
 
             <p>Don't have an account? <a href="480FinalProject_CreateAccount.php" class="link-info">Register here</a></p>
 
-          </form>
-
-        </div>
-
+            </form>
       </div>
+<?php
+if(isset($_POST['submit'])){
+    //session_start();
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'artgallery2021';
+
+    $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+    if ( mysqli_connect_errno() ) {
+      exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+    }
+    if ( !isset($_POST['uname'], $_POST['password']) ) {
+      exit('<div style="width: 23rem;" class="pt-1 mb-4"><p class="error">Please fill both the username and password fields!</p></div>');
+    }
+    if ($stmt = $con->prepare('SELECT username, password FROM registration WHERE username = ?')) {
+      $stmt->bind_param('s', $_POST['uname']);
+      $stmt->execute();
+      $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($id, $password);
+            $stmt->fetch();
+            if ($_POST['password'] === $password) {
+                session_regenerate_id();
+                $_SESSION['loggedin'] = TRUE;
+                $_SESSION['name'] = $_POST['uname'];
+                $_SESSION['id'] = $id;
+                header("Location: 480FinalProject_LogInACK.php");
+            } else {
+                echo '<div style="width: 23rem;" class="pt-1 mb-4"><p class="error">Incorrect username and/or password!</p></div>';
+            }
+        } else {
+            echo '<div style="width: 23rem;" class="pt-1 mb-4"><p class="error">Incorrect username and/or password!</p></div>';
+        }
+      $stmt->close();
+  }
+}
+          ?>
+        </div>
       <div class="col-sm-6 px-0 d-none d-sm-block">
         <img src="Images/abstract.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
       </div>
     </div>
   </div>
 </section>
-
-
 </main>
 </body>
 </html> 

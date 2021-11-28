@@ -46,7 +46,10 @@
         var confirmPassword = $("#userPass2").val();
 
         if (password != confirmPassword) $("#passwordValidError").html("Passwords do not match");
-        else $("#passwordValidError").html("Passwords match");
+        else {
+          $("#passwordValid").html("Passwords match");
+          $("#passwordValidError").html("");
+        }
         //$("#passwordValidError").css("color": "green");
         }
         $(document).ready(function () {
@@ -59,10 +62,13 @@
       .error {
             color: red;
         }
+        .valid {
+            color: green;
+        }
     </style>
 
    
-    <title>Gallery w/ Bootstrap</title>
+    <title>Account Creation</title>
 </head>
 
 <body>
@@ -80,17 +86,27 @@
                     <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.html">About</a>
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="480FinalProject_Admin.php">Admin</a>
-              </li>
-              <li class="nav-item active">
-                  <a class="nav-link" href="480FinalProject_LogIn.php">Log In <span class="sr-only">(current)</span></a>
-              </li>
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+  echo "<li class='nav-item active'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
+echo '</li>';
+}
+else{
+  echo '<li class="nav-item active">';
+  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
+echo '</li>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
             </ul>
         </div>
     </nav>
@@ -147,13 +163,13 @@
             <div class="form-outline mb-4">
               <input type="password" id="userPass" class="form-control form-control-lg" name="password" onkeyup="checkPassStrength()"/>
               <label class="form-label">Choose a strong password</label>
-              <span class='error' id='passwordStrengthError'></span>
+              <span class='error' id='passwordStrengthError'></span><span class='valid' id='passwordStrengthValid'></span>
             </div>
 
             <div class="form-outline mb-4">
               <input type="password" id="userPass2" class="form-control form-control-lg" name="password" onkeyup="validatePass()"/>
               <label class="form-label">Type your password again</label>
-              <span class='error' id='passwordValidError'></span>
+              <span class='error' id='passwordValidError'></span><span class='valid' id='passwordValid'></span>
             </div>
 
             <div class="pt-1 mb-4">
