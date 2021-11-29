@@ -61,6 +61,7 @@
     <title>Gallery Admin</title>
 </head>
 <?php
+ob_start();
 session_start();
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: 480FinalProject_LogIn.php');

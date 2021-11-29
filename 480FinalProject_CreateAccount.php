@@ -30,7 +30,7 @@
      //regex password strength
      function checkPassStrength() {
         var RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{11,}$/;
-        var passInput = document.getElementById("password").value;
+        var passInput = document.getElementById("password2").value;
         var errorSpan = document.getElementById("passwordStrengthError");
         if(!RegExp.test(passInput)) {
             errorSpan.innerHTML = "<br>Enter a password at least 11 characters including at least 1 capital letter and one number"
@@ -41,9 +41,12 @@
     }
 
     //password matching - jquery
-     function validatePass() {
-        var password = $("#userPass").val();
-        var confirmPassword = $("#userPass2").val();
+     
+        $(document).ready(function () {
+        $("#password, #confirm_password").keyup(validatePass);
+        function validatePass() {
+        var password = $("#password2").val();
+        var confirmPassword = $("#password").val();
 
         if (password != confirmPassword) $("#passwordValidError").html("Passwords do not match");
         else {
@@ -52,8 +55,6 @@
         }
         //$("#passwordValidError").css("color": "green");
         }
-        $(document).ready(function () {
-        $("#password, #confirm_password").keydown(validatePass);
 });
   
     </script>
@@ -92,6 +93,7 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
+ob_start();
 session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item active'>";
@@ -99,12 +101,8 @@ if (!isset($_SESSION['loggedin'])) {
 echo '</li>';
 }
 else{
-  echo '<li class="nav-item active">';
-  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
-echo '</li>';
-  echo "<li class='nav-item'>";
-    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
-echo '</li>';
+  header("Location: 480FinalProject_HomeBoot.php");
+  exit;
 }
 ?>
             </ul>
@@ -115,24 +113,6 @@ echo '</li>';
     <div class="album py-5 bg-light">
     <div class="container">
 
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    //echo "Connected successfully<br>";
-    
-    $conn->close();
-?>
-
 
 
 
@@ -140,7 +120,7 @@ echo '</li>';
 <section class="vh-100">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-6 text-black">
+      <div class="col text-black">
 
         <div class="px-5 ms-xl-4">
           <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
@@ -171,7 +151,7 @@ echo '</li>';
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="password" name="password" class="form-control form-control-lg" name="password" onkeyup="validatePass()"/>
+              <input type="password" id="password" name="password" class="form-control form-control-lg" name="password"/>
               <label class="form-label">Type your password again</label>
               <span class='error' id='passwordValidError'></span><span class='valid' id='passwordValid'></span>
             </div>
@@ -185,8 +165,8 @@ echo '</li>';
         </div>
 
       </div>
-      <div class="col-sm-6 px-0 d-none d-sm-block">
-        <img src="Images/abstract.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      <div id="imgdiv" class="col px-0 d-none d-lg-block">
+        <img id="logimg" src="Images/abstract.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
       </div>
     </div>
   </div>
