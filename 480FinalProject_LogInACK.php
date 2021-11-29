@@ -14,7 +14,7 @@
 
 
    
-    <title>Gallery w/ Bootstrap</title>
+    <title>Log In Success</title>
 </head>
 
 <body>
@@ -38,6 +38,7 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
+ob_start();
 session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item'>";

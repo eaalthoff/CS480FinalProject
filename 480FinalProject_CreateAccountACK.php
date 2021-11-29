@@ -14,7 +14,14 @@
 
     <title>Account Created</title>
 </head>
-
+<?php
+ob_start();
+session_start();
+if (isset($_SESSION['loggedin'])) {
+	header('Location: 480FinalProject_HomeBoot.php');
+	exit;
+}
+?>
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,18 +43,10 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
-session_start();
+//session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item active'>";
     echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
-echo '</li>';
-}
-else{
-  echo '<li class="nav-item active">';
-  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
-echo '</li>';
-  echo "<li class='nav-item'>";
-    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
 echo '</li>';
 }
 ?>
@@ -59,23 +58,6 @@ echo '</li>';
     <div class="album py-5 bg-light">
     <div class="container">
 
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    //echo "Connected successfully<br>";
-    
-    $conn->close();
-?>
 
 
 

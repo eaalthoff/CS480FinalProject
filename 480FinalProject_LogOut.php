@@ -38,7 +38,8 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
-//session_start();
+ob_start();
+session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item'>";
     echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
@@ -72,7 +73,7 @@ echo '</li>';
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 <?php
-session_start();
+//session_start();
 session_destroy();
 echo '<p>You have successfully logged out.</p>'
 ?>
