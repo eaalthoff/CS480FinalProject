@@ -3,7 +3,7 @@
 ob_start();
 session_start();
 ?>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
