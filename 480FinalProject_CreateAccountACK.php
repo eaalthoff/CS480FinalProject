@@ -17,48 +17,6 @@
 
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="480FinalProject_HomeBoot.php">Gallery</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_About.php">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
-                </li>
-<?php
-session_start();
-if (!isset($_SESSION['loggedin'])) {
-  echo "<li class='nav-item active'>";
-    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
-echo '</li>';
-}
-else{
-  echo '<li class="nav-item active">';
-  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
-echo '</li>';
-  echo "<li class='nav-item'>";
-    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
-echo '</li>';
-}
-?>
-            </ul>
-        </div>
-    </nav>
-</header>
-    <main role="main">
-    <div class="album py-5 bg-light">
-    <div class="container">
-
     <?php
     $servername = "localhost";
     $username = "root";
@@ -89,17 +47,80 @@ $sql = "INSERT INTO registration VALUES ('$ID',
 
 
 if(mysqli_query($conn, $sql)){
-  echo "<br><center><h4>Registration successful</h4></center>";
+  $regMess= "Registration successful. ";
+  ob_start();
+  session_start();
+  $sql="SELECT id FROM registration WHERE username = '$username' ";
+  if(mysqli_query($conn, $sql)){
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    session_regenerate_id();
+    $_SESSION['loggedin'] = TRUE;
+    $_SESSION['name'] = $_REQUEST['username'];
+    $_SESSION['id'] = $row['id'];
+    $loginMessage= 'Welcome ' . $_SESSION['name'] . '! You are now signed in.';
+  }
+  else{
+    echo "ERROR: Sorry $sql. " 
+        . mysqli_error($conn);
+  }
 } else{
   echo "ERROR: Sorry $sql. " 
       . mysqli_error($conn);
 }
-
-
-
     $conn->close();
 ?>
+<script>
+$(document).ready(function () {
+        var register ='<?php echo $regMess?>';
+        var login ='<?php echo $loginMessage?>';
+        $("#regMessage").html('<?php echo $regMess?>');
+        $("#loginInfo").html('<?php echo $loginMessage?>');
+});
 
+
+  </script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="480FinalProject_HomeBoot.php">Gallery</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_HomeBoot.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_About.php">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
+                </li>
+<?php
+//session_start();
+if (!isset($_SESSION['loggedin'])) {
+  echo "<li class='nav-item active'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
+echo '</li>';
+}
+else{
+  echo '<li class="nav-item active">';
+  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
+echo '</li>';
+  echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
+            </ul>
+        </div>
+    </nav>
+</header>
+    <main role="main">
+    <div class="album py-5 bg-light">
+    <div class="container">
 
 
 
@@ -112,13 +133,13 @@ if(mysqli_query($conn, $sql)){
         <div class="px-5 ms-xl-4">
           <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
         </div>
-
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
-        <h1>Thank you for creating an account with us!</h1>
-         
+          <h1>Thank you for creating an account with us!</h1>
         </div>
-
+        <div id="regMessage" class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        </div>
+        <div id="loginInfo" class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        </div>
       </div>
       <div class="col-sm-6 px-0 d-none d-sm-block">
         <img src="Images/abstract.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
