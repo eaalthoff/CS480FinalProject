@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<?php
+ob_start();
+session_start();
+?>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -37,8 +41,6 @@
                 </li>
 <!--This php tag needs to not be tabbed out for the session to work-->
 <?php
-ob_start();
-session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item'>";
     echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';

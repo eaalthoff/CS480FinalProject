@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+ob_start();
+session_start();
+?>
 <html lang="en">
 
 <head>
@@ -48,8 +52,8 @@ $sql = "INSERT INTO registration VALUES ('$ID',
 
 if(mysqli_query($conn, $sql)){
   $regMess= "Registration successful. ";
-  ob_start();
-  session_start();
+  //ob_start();
+  //session_start();
   $sql="SELECT id FROM registration WHERE username = '$username' ";
   if(mysqli_query($conn, $sql)){
     $result = mysqli_query($conn, $sql);

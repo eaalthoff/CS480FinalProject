@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+ob_start();
+session_start();
+?>
 <html lang="en">
 
 <head>
@@ -37,8 +41,6 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
-ob_start();
-session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item'>";
     echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
