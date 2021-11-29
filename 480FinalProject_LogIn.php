@@ -136,7 +136,7 @@ if(isset($_POST['submit'])){
     if ( !isset($_POST['uname'], $_POST['password']) ) {
       exit('<div style="width: 23rem;" class="pt-1 mb-4"><p class="error">Please fill both the username and password fields!</p></div>');
     }
-    if ($stmt = $con->prepare('SELECT username, password, id FROM registration WHERE username = ?')) {
+    if ($stmt = $con->prepare('SELECT username, password FROM registration WHERE username = ?')) {
       $stmt->bind_param('s', $_POST['uname']);
       $stmt->execute();
       $stmt->store_result();
