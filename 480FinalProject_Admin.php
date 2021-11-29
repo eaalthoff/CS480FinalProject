@@ -148,7 +148,6 @@ echo '</li>';
         <!--ARTIST ID INPUT -- Needs to be a drop down with current artists from DB-->
         <div class="form-group">
 
-         <!--FIX these to be auto run through PHP-->
         <label>Choose the artist</label>
 
         <?php 

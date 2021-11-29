@@ -17,7 +17,7 @@
        //regex email
        function checkEmail() {
         var RegExp = /[a-zA-Z_\-]+@(([a-zA-Z_\-])+\.)+[a-zA-Z]{2,4}/;
-        var emailInput = document.getElementById("userEmailInput").value;
+        var emailInput = document.getElementById("username").value;
         var errorSpan = document.getElementById("urlError");
         if(!RegExp.test(emailInput)) {
             errorSpan.innerHTML = "<br>Error: Please enter the email in yourEmail@example.something format"
@@ -30,7 +30,7 @@
      //regex password strength
      function checkPassStrength() {
         var RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{11,}$/;
-        var passInput = document.getElementById("userPass").value;
+        var passInput = document.getElementById("password").value;
         var errorSpan = document.getElementById("passwordStrengthError");
         if(!RegExp.test(passInput)) {
             errorSpan.innerHTML = "<br>Enter a password at least 11 characters including at least 1 capital letter and one number"
@@ -155,19 +155,23 @@ echo '</li>';
             <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"> Create an account</h3>
 
             <div class="form-outline mb-4">
-              <input type="email" id="userEmailInput" class="form-control form-control-lg" onkeyup="checkEmail()" name="uname" />
-              <label class="form-label">Add your Email address</label>
+              <input type="email" id="username" name="username" class="form-control form-control-lg" onkeyup="checkEmail()" name="uname" />
+              <label class="form-label">Email Address</label>
               <span class='error' id='urlError'></span>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="text" id="name" name="name" class="form-control form-control-lg" name="name"/>
+              <label class="form-label">Full Name</label>
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="userPass" class="form-control form-control-lg" name="password" onkeyup="checkPassStrength()"/>
+              <input type="password" id="password2" name="password2" class="form-control form-control-lg" name="password" onkeyup="checkPassStrength()"/>
               <label class="form-label">Choose a strong password</label>
               <span class='error' id='passwordStrengthError'></span><span class='valid' id='passwordStrengthValid'></span>
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="userPass2" class="form-control form-control-lg" name="password" onkeyup="validatePass()"/>
+              <input type="password" id="password" name="password" class="form-control form-control-lg" name="password" onkeyup="validatePass()"/>
               <label class="form-label">Type your password again</label>
               <span class='error' id='passwordValidError'></span><span class='valid' id='passwordValid'></span>
             </div>

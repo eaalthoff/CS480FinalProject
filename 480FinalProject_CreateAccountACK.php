@@ -73,7 +73,30 @@ echo '</li>';
     die("Connection failed: " . $conn->connect_error);
     }
     //echo "Connected successfully<br>";
-    
+    $ID = rand(1,10000000); //temporary until I can figure out how to assign consecutively
+    $username = $_REQUEST['username'];
+    $name =$_REQUEST['name'];
+    $password = $_REQUEST['password'];
+ 
+//get values from registration form
+
+
+//insert registration information into table
+$sql = "INSERT INTO registration VALUES ('$ID',
+                                        '$username',
+                                        '$name', 
+                                        '$password')";
+
+
+if(mysqli_query($conn, $sql)){
+  echo "<br><center><h4>Registration successful</h4></center>";
+} else{
+  echo "ERROR: Sorry $sql. " 
+      . mysqli_error($conn);
+}
+
+
+
     $conn->close();
 ?>
 
@@ -92,7 +115,7 @@ echo '</li>';
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-        <h1>Thank you for creating an account with us.</h1>
+        <h1>Thank you for creating an account with us!</h1>
          
         </div>
 

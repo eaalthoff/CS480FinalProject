@@ -144,7 +144,7 @@
     //PHP $_REQUEST is a PHP super global variable which is used to collect data after submitting an HTML form.
     $title = $_REQUEST['title'];
     $titleID = rand(1,10000000); //$_REQUEST['titleID'] later...
-    $artistID = $_REQUEST['artistID']; //need to get artistID value from form, use 'value'?
+    $artistID = $_REQUEST['artistID'];
     $url = $_REQUEST['url'];
     $medium = $_REQUEST['medium'];
     $price = $_REQUEST['price'];
