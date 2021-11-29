@@ -136,9 +136,9 @@ echo '</li>';
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
           <h1>Thank you for creating an account with us!</h1>
         </div>
-        <div id="regMessage" class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        <div id="regMessage" class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5">
         </div>
-        <div id="loginInfo" class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        <div id="loginInfo" class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5">
         </div>
       </div>
       <div id="imgdiv" class="col px-0 d-none d-lg-block">
