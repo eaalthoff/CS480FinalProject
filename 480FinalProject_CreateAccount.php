@@ -101,12 +101,8 @@ if (!isset($_SESSION['loggedin'])) {
 echo '</li>';
 }
 else{
-  echo '<li class="nav-item active">';
-  echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
-echo '</li>';
-  echo "<li class='nav-item'>";
-    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
-echo '</li>';
+  header("Location: 480FinalProject_HomeBoot.php");
+  exit;
 }
 ?>
             </ul>
@@ -116,24 +112,6 @@ echo '</li>';
     <main role="main">
     <div class="album py-5 bg-light">
     <div class="container">
-
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "artgallery2021";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    }
-    //echo "Connected successfully<br>";
-    
-    $conn->close();
-?>
 
 
 

@@ -71,7 +71,8 @@ echo '</li>';
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 <?php
-session_start();
+ob_start();
+session_start();//I put the session start here since it'll show the user as logged in above if I put it there
 session_destroy();
 echo '<p>You have successfully logged out.</p>'
 ?>

@@ -101,12 +101,11 @@ $(document).ready(function () {
 <?php
 //session_start();
 if (!isset($_SESSION['loggedin'])) {
-  echo "<li class='nav-item active'>";
-    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In<span class="sr-only">(current)</span></a>';
-echo '</li>';
+  header("Location: 480FinalProject_LogIn.php");
+  exit;
 }
 else{
-  echo '<li class="nav-item active">';
+  echo '<li class="nav-item">';
   echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin</a>';
 echo '</li>';
   echo "<li class='nav-item'>";

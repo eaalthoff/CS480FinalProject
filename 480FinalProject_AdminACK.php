@@ -61,22 +61,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
-                <?php
-              session_start();
-              if (!isset($_SESSION['loggedin'])) {
-                echo "<li class='nav-item'>";
-                  echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
-              echo '</li>';
-              }
-              else{
-                echo '<li class="nav-item active">';
-                echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
-              echo '</li>';
-                echo "<li class='nav-item'>";
-                  echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
-              echo '</li>';
-              }
-              ?>
+<?php
+ob_start();
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogIn.php">Log In</a>';
+echo '</li>';
+}
+else{
+echo '<li class="nav-item active">';
+echo '<a class="nav-link" href="480FinalProject_Admin.php">Admin<span class="sr-only">(current)</span></a>';
+echo '</li>';
+echo "<li class='nav-item'>";
+    echo '<a class="nav-link" href="480FinalProject_LogOut.php">Log Out</a>';
+echo '</li>';
+}
+?>
             </ul>
         </div>
     </nav>

@@ -37,6 +37,7 @@
                 </li>
 <!--This php tag needs to not be tabbed out for the session to work-->
 <?php
+ob_start();
 session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item'>";
