@@ -30,7 +30,7 @@
      //regex password strength
      function checkPassStrength() {
         var RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{11,}$/;
-        var passInput = document.getElementById("password").value;
+        var passInput = document.getElementById("password2").value;
         var errorSpan = document.getElementById("passwordStrengthError");
         if(!RegExp.test(passInput)) {
             errorSpan.innerHTML = "<br>Enter a password at least 11 characters including at least 1 capital letter and one number"
@@ -41,9 +41,12 @@
     }
 
     //password matching - jquery
-     function validatePass() {
-        var password = $("#userPass").val();
-        var confirmPassword = $("#userPass2").val();
+     
+        $(document).ready(function () {
+        $("#password, #confirm_password").keyup(validatePass);
+        function validatePass() {
+        var password = $("#password2").val();
+        var confirmPassword = $("#password").val();
 
         if (password != confirmPassword) $("#passwordValidError").html("Passwords do not match");
         else {
@@ -52,8 +55,6 @@
         }
         //$("#passwordValidError").css("color": "green");
         }
-        $(document).ready(function () {
-        $("#password, #confirm_password").keydown(validatePass);
 });
   
     </script>
@@ -92,6 +93,7 @@
                     <a class="nav-link" href="480FinalProject_ContactUs.php">Contact Us</a>
                 </li>
 <?php
+ob_start();
 session_start();
 if (!isset($_SESSION['loggedin'])) {
   echo "<li class='nav-item active'>";
@@ -171,7 +173,7 @@ echo '</li>';
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="password" name="password" class="form-control form-control-lg" name="password" onkeyup="validatePass()"/>
+              <input type="password" id="password" name="password" class="form-control form-control-lg" name="password"/>
               <label class="form-label">Type your password again</label>
               <span class='error' id='passwordValidError'></span><span class='valid' id='passwordValid'></span>
             </div>
