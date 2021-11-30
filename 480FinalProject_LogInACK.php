@@ -59,7 +59,7 @@ echo '</li>';
         </div>
     </nav>
 </header>
-    <main role="main">
+    <main>
     <div class="album py-5 bg-light">
     <div class="container">
 

@@ -60,7 +60,7 @@ echo '</li>';
         </div>
     </nav>
 </header>
-  <main role="main">
+  <main>
     <div class="container marketing">
       <!-- Section: Contact v.3 -->
       <section class="contact-section my-5">
@@ -210,12 +210,7 @@ echo '</li>';
                                         '$title',
                                         '$customerMessage')";
 
-if(mysqli_query($conn, $sql)){
-    echo "<br><center><h4>Data stored in customer table successfully.</h4></center>";
-} else{
-    echo "ERROR: Sorry $sql. " 
-        . mysqli_error($conn);
-}
+
     $conn->close();
 ?>
 

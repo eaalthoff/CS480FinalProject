@@ -84,8 +84,8 @@ echo '</li>';
         </div>
     </nav>
 </header>
-    <main role="main">
-    <div class="album py-5 bg-light">
+    <main>
+    <div class="album py-5 bg-light"> 
     <div class="container">
 
 <!--Log In form content-->
@@ -166,6 +166,7 @@ if(isset($_POST['submit'])){
       <div id="imgdiv" class="col px-0 d-none d-lg-block">
         <img id="logimg" src="Images/abstract.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
       </div>
+      
     </div>
   </div>
 </section>
