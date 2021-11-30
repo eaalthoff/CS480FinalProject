@@ -112,7 +112,7 @@ echo '</li>';
         </div>
     </nav>
 </header>
-    <main role="main">
+    <main>
         <center>
         <h2>Administrative Access Portal</h2>
 

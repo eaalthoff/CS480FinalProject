@@ -59,7 +59,7 @@ echo '</li>';
     </nav>
   </header>
   <!--Main content-->
-  <main role="main">
+  <main>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
