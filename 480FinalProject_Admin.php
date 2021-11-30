@@ -148,7 +148,7 @@ echo '</li>';
           <input type="text" name="title" class="form-control" id="title" placeholder="Enter title of artwork">
           <small id="titleHelp" class="form-text text-muted">Add the title of the artwork</small>
         </div>
-        <!--ARTIST ID INPUT -- Needs to be a drop down with current artists from DB-->
+        <!--ARTIST ID INPUT - Needs to be a drop down with current artists from DB-->
         <div class="form-group">
 
         <label>Choose the artist</label>
