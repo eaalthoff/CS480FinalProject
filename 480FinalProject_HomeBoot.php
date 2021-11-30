@@ -125,7 +125,7 @@ echo '</li>';
         </div>
     </nav>
 </header>
-    <main role="main">
+    <main>
     <div class="album py-5 bg-light">
     <div class="container">
     <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="form-group row">

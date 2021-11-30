@@ -111,7 +111,7 @@ else{
         </div>
     </nav>
 </header>
-    <main role="main">
+    <main>
     <div class="album py-5 bg-light">
     <div class="container">
 
@@ -171,6 +171,8 @@ else{
         <img id="logimg" src="Images/abstract.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </section>
 

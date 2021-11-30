@@ -123,7 +123,7 @@ echo '</li>';
         </div>
     </nav>
 </header>
-  <main role="main">
+  <main>
     <div class="container marketing">
       <!-- Section: Contact v.3 -->
       <section class="contact-section my-5">
