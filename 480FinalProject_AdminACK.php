@@ -85,10 +85,13 @@ echo '</li>';
     </nav>
 </header>
     <main>
-        <center>
-        <h2>Administrative Access Portal</h2>
-      
+        <div class="container-fluid">
+            <div class="flexdiv d-flex justify-content-center">
+                <h2 style="padding: 15px 15px 15px 15px;">Administrative Access Portal</h2>
+            </div>
+            <div class="flexdiv d-flex justify-content-center">
       <h3> Your request has been received. Contact the administrator for verification and questions. </h3>   
+</div>
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -116,29 +119,6 @@ echo '</li>';
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     }
-    /* Just some SQL injection prevention stuff I was messing with
-    $stmt = $conn->prepare("INSERT INTO artwork (titleID,title,artistID,url,medium,price,year)
-    VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bindParam('i', rand(1,10000000));
-    $stmt->bindParam('s', $_REQUEST['title']);
-    $stmt->bindParam('i', $_REQUEST['artistID']);
-    $stmt->bindParam('s', $_REQUEST['url']);
-    $stmt->bindParam('s', $_REQUEST['medium']);
-    $stmt->bindParam('i', $_REQUEST['price']);
-    $stmt->bindParam('i', $_REQUEST['year']);
-
-
-    $stmt->execute();
-    if($stmt->execute()==true){
-        echo "<br><center><h4>Data stored in a artwork table successfully.</h4></center>";
-        echo "<br><center><h4>Data stored in Artwork: </h4></center>";
-       // echo nl2br("<center><h4> \n$title\n $titleID\n $artistID\n $medium\n $price \n$year \n$url </h4></center>");
-    }
-    else{
-        echo "ERROR: Sorry $sql. " 
-        . mysqli_error($conn);
-    }
-    $conn->close();*/
 
     
     //echo "Connected successfully<br>";
@@ -163,9 +143,8 @@ echo '</li>';
                                         '$year')";
 
 if(mysqli_query($conn, $sql)){
-    echo "<br><center><h4>Data stored in a artwork table successfully.</h4></center>";
-    echo "<br><center><h4>Data stored in Artwork: </h4></center>";
-   // echo nl2br("<center><h4> \n$title\n $titleID\n $artistID\n $medium\n $price \n$year \n$url </h4></center>");
+    echo "<br><div class='flexdiv d-flex justify-content-center'><h4>Data stored in a artwork table successfully.</h4></div>";
+    echo "<br><div class='flexdiv d-flex justify-content-center'><h4>Data stored in Artwork: </h4></center>";
 } else{
     echo "ERROR: Sorry $sql. " 
         . mysqli_error($conn);

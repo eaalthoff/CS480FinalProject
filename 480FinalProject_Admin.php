@@ -26,8 +26,18 @@ session_start();
         .error {
             color: red;
         }
-        
-
+        .container-fluid{
+          text-align: center;
+        }
+        .flexdiv{
+          padding: 15px;
+        }
+        .buttondiv{
+          text-align: center;
+          margin: auto;
+          display: flex;
+          justify-content: center;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -113,9 +123,11 @@ echo '</li>';
     </nav>
 </header>
     <main>
-        <center>
+      <div id="contDiv" class="container-fluid">
+        <div class="flexdiv d-flex justify-content-center">
         <h2>Administrative Access Portal</h2>
-
+        </div>  
+        <div class="flexdiv d-flex justify-content-center">
     <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -138,7 +150,9 @@ echo '</li>';
     </tr>
   </tbody>
 </table>
-    
+</div>
+<div class="flexdiv d-flex justify-content-center">
+
     <br>
     <!--This form is a work in progress. Right now the data is not being input into the database table accruately.-->
     <form action="480FinalProject_AdminACK.php" method="post" class="form">
@@ -209,13 +223,16 @@ echo '</li>';
             <p></p>
           <small id="urlHelp" class="form-text text-muted">Add the URL to the artwork. Use format Images/yourImage.jpg </small>
         </div>
+        <div class="buttondiv">
         <button type="submit" class="btn btn-outline-success btn-block" style="width: 25%;">Submit</button>
+    </div>
         </form> 
+    </div>
 
       <br>
       <br>
         
-      
+    </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
