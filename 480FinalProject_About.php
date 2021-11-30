@@ -59,7 +59,7 @@ echo '</li>';
     </nav>
   </header>
   <!--Main content-->
-  <main role="main">
+  <main>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -282,7 +282,6 @@ echo '</li>';
 
       <!--Done - Artist Description Featurettes-->
 
-    </div>
     </div>
   </main>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
